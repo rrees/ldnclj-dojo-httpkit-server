@@ -1,16 +1,16 @@
 (ns hello-world.core
-	(:use [org.httpkit.server :only [run-server]]))
+	(:use [org.httpkit.server :only [run-server]]
+            [compojure.handler :only [site]]
+            [compojure.core :only [defroutes GET]]
+            [ring.middleware.reload :as reload]))
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(defroutes all-routes
+  (GET "/" [] "<p>Hello <strong><em>ldnclj</em></strong> July 2015 dojo!</p>")) ;; all other, return 404
 
-(defn handler [request]
-  {:status 200
-   :headers {"Content-Type" "text/html"}
-   :body "<i>Hello World</i>"
-   :blah "foo"})
+(defn in-dev? [] true) 
 
 (defn -main [& args]
-	(run-server handler {:port 3000}))
+	(let [handler (if (in-dev?)
+			(reload/wrap-reload (site #'all-routes))
+			(site all-routes))]
+		(run-server handler {:port 3000})))
