@@ -1,14 +1,13 @@
-# hello-world
+# Http Kit hello-world web app
 
-A Clojure library designed to ... well, that part is up to you.
+A dojo exercise to explore the [Http Kit](http://http-kit.org/) server and have a hot reloading server that you can play around with, based on the tutorials for Ring, Compojure and Http kit itself.
 
 ## Usage
 
-FIXME
+lein run
 
 ## License
 
-Copyright © 2014 FIXME
+Copyright © 2014
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+GPL v3
